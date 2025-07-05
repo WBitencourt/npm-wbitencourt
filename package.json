@@ -1,0 +1,38 @@
+{
+  "name": "npm-wbitencourt",
+  "version": "1.0.0",
+  "description": "npm lib create to keep reusable code by Wendell Bitencourt",
+  "private": true,
+  "workspaces": [
+    "packages/**"
+  ],
+  "keywords": [
+    "npm",
+    "package",
+    "wbitencourt"
+  ],
+  "homepage": "https://github.com/WBitencourt/npm-wbitencourt#readme",
+  "bugs": {
+    "url": "https://github.com/WBitencourt/npm-wbitencourt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WBitencourt/npm-wbitencourt.git"
+  },
+  "license": "ISC",
+  "author": "Wendell Bitencourt",
+  "type": "module",
+  "scripts": {
+    "test": "npx vitest run",
+    "build": "npm run build --workspaces"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^24.0.10",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "fs-extra": "^11.3.0"
+  }
+}

@@ -1,0 +1,38 @@
+import { describe, it, expect } from 'vitest';
+import { mask } from '.';
+const cases = [
+    ['sp', 'SP'],
+    ['SP', 'SP'],
+    ['SP1', 'SP-1'],
+    ['SP12', 'SP-12'],
+    ['SP123', 'SP-123'],
+    ['SP1234', 'SP-1234'],
+    ['SP12345', 'SP-12345'],
+    ['SP123456', 'SP-123456'],
+];
+const invalidCases = [
+    ['1', ''],
+    ['SP1234567', 'SP-123456'],
+    [0, ''],
+    [null, ''],
+    [undefined, ''],
+    [NaN, ''],
+    [true, ''],
+    [false, ''],
+    [{}, ''],
+    [[], ''],
+];
+describe('Mask: maskOAB', () => {
+    it('should be a function', () => {
+        expect(typeof mask.oab).toBe('function');
+    });
+    it('should return a string', () => {
+        expect(typeof mask.oab('12345678901')).toBe('string');
+    });
+    it.each(cases)('should format string input "%s" to "%s"', (input, expected) => {
+        expect(mask.oab(input)).toBe(expected);
+    });
+    it.each(invalidCases)('should format invalid input "%s" to "%s"', (input, expected) => {
+        expect(mask.oab(input)).toBe(expected);
+    });
+});
