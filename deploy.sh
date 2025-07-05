@@ -1,5 +1,7 @@
 #!/bin/bash
 
+npm run build
+
 npm version patch
 
 git add .
