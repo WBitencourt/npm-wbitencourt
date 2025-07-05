@@ -1,6 +1,6 @@
 {
   "name": "wbitencourt",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "npm lib create to keep reusable code by Wendell Bitencourt",
   "bin": {
     "wbitencourt": "packages/cli/dist/index.js"
