@@ -2,9 +2,11 @@
 
 npm run build
 
-npm version patch
-
 git add .
+
+git commit -m "build: build all packages"
+
+npm version patch
 
 git commit -m "deploy: update version to $npm_package_version"
 
