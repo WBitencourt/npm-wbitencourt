@@ -125,17 +125,18 @@ npm run test
 npm run build
 ```
 
-## 📝 License
-
-ISC
-
 ## 👤 Author
 
 **Wendell Bitencourt**
 
+- NPM: [wbitencourt](https://www.npmjs.com/package/wbitencourt)
 - GitHub: [@WBitencourt](https://github.com/WBitencourt)
 - Repository: [npm-wbitencourt](https://github.com/WBitencourt/npm-wbitencourt)
 
 ## 🤝 Contributing
 
 Issues and pull requests are welcome!
+
+## 📝 License
+
+ISC
