@@ -8,6 +8,7 @@
   "files": [
     "packages/cli/dist/**/*"
   ],
+  "private": true,
   "workspaces": [
     "packages/**"
   ],
