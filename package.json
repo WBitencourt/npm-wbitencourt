@@ -38,7 +38,7 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "fs-extra": "^11.3.0",
-    "init": "^0.1.2"
+    "chalk": "^5.4.1",
+    "fs-extra": "^11.3.0"
   }
 }
