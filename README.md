@@ -31,6 +31,9 @@ npx wbitencourt@latest init
 ### Add Utilities
 
 ```bash
+# Add date utilities
+npx wbitencourt@latest add util-date
+
 # Add mask utilities
 npx wbitencourt@latest add util-mask
 
