@@ -1,4 +1,4 @@
-import { isValidDate } from "@wbitencourt/util-date";
+import { isValidDateTime } from "@wbitencourt/util-date";
 function maskCurrencyBRL(value) {
     if (!value)
         return 'R$ 0,00';
@@ -270,7 +270,7 @@ function maskDateTime(value) {
             }
         }
     }
-    if (formatted.length === 16 && !isValidDate(formatted)) {
+    if (formatted.length === 16 && !isValidDateTime(formatted)) {
         return '';
     }
     return formatted;

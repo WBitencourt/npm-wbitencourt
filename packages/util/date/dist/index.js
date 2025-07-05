@@ -1,4 +1,4 @@
-export function isValidDate(input) {
+export function isValidDateTime(input) {
     // Espera-se data no formato "dd/mm/yyyy hh:mm"
     const regex = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})$/;
     const match = input.match(regex);

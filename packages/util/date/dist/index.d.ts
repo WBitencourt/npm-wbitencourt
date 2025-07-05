@@ -1,1 +1,1 @@
-export declare function isValidDate(input: string): boolean;
+export declare function isValidDateTime(input: string): boolean;
