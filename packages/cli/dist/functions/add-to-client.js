@@ -12,25 +12,24 @@ export async function addToClient(command) {
             const from = path.join(srcRoot, 'mask/src');
             const to = path.join(destRoot, 'src/util/mask');
             await fs.copy(from, to);
-            console.log(chalk.green('util-mask copiado para src/util/mask!'));
+            console.log(chalk.green('util-mask copied to src/util/mask!'));
             break;
         }
         case 'util-all': {
-            const utilDirs = await fs.readdir(srcRoot); // lê todos os diretórios dentro de util/
+            const utilDirs = await fs.readdir(srcRoot);
             for (const dir of utilDirs) {
                 const from = path.join(srcRoot, dir, 'src');
                 const to = path.join(destRoot, 'src/util', dir);
-                // Confirma se é diretório e se existe `src`
                 const fromExists = await fs.pathExists(from);
                 if (!fromExists)
                     continue;
                 await fs.copy(from, to);
-                console.log(chalk.green(`${dir} copiado para src/util/${dir}`));
+                console.log(chalk.green(`${dir} copied to src/util/${dir}`));
             }
             break;
         }
         default:
-            console.log(chalk.red(`Util "${command}" não reconhecido.`));
+            console.log(chalk.red(`add command "${command}" not recognized.`));
             break;
     }
 }
