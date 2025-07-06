@@ -1,8 +1,6 @@
 # wbitencourt
 
-**npm package with reusable utilities by Wendell Bitencourt**
-
-A comprehensive monorepo containing reusable TypeScript utilities and a CLI tool for easy integration into client projects.
+This package, wbitencourt, is intended for personal use. It serves as a way to reuse and centralize code across my own projects, helping maintain consistency and avoid duplication. It is not designed for public or production use outside of my personal development environment, but feel free to use it if you find it helpful.
 
 ## 📦 Installation
 
@@ -31,9 +29,6 @@ npx wbitencourt@latest init
 ### Add Utilities
 
 ```bash
-# Add date utilities
-npx wbitencourt@latest add util-date
-
 # Add mask utilities
 npx wbitencourt@latest add util-mask
 
@@ -58,12 +53,6 @@ Input masking functions for Brazilian formats and common data types:
 - **Uuid()** - UUID formatting
 - **DateTime()** - Date and time formatting
 
-### @wbitencourt/util-date
-
-Date validation utilities:
-
-- **isValidDateTime()** - Validates date format (dd/mm/yyyy hh:mm)
-
 ## 💡 Usage Examples
 
 ### Using with CLI (copied to your project)
@@ -85,10 +74,8 @@ const currency = maskCurrencyBRL(1234.56); // R$ 1.234,56
 
 ```typescript
 import { maskCpf } from "@wbitencourt/util-mask";
-import { isValidDate } from "@wbitencourt/util-date";
 
 const formattedCpf = maskCpf("12345678901");
-const isValid = isValidDate("31/12/2023 14:30");
 ```
 
 ## 🏗️ Project Structure
@@ -103,10 +90,6 @@ wbitencourt/
 │   │   │   └── index.ts        # CLI entry point
 │   │   └── package.json
 │   └── util/                   # Utility packages
-│       ├── date/               # Date utilities
-│       │   ├── src/
-│       │   │   └── index.ts
-│       │   └── package.json
 │       └── mask/               # Masking utilities
 │           ├── src/
 │           │   ├── index.ts
