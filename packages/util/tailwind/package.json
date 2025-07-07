@@ -1,11 +1,16 @@
 {
-  "name": "@wbitencourt/util-tailwind",
+  "name": "@wbitencourt/util-mask",
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "build": "tsc"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwindcss": "^4.0.0",
+    "tailwind-merge": "^3.0.1"
   },
   "devDependencies": {
     "typescript": "^5.8.3",
