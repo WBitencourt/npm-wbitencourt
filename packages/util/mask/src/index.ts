@@ -1,4 +1,4 @@
-function isValidDateTime(input: string) {
+function isValidMaskDateTime(input: string) {
   // Espera-se data no formato "dd/mm/yyyy hh:mm"
   const regex = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})$/;
   const match = input.match(regex);
@@ -19,7 +19,7 @@ function isValidDateTime(input: string) {
   );
 }
 
-function maskCurrencyBRL(value: string | number) {  
+function maskCurrencyBRL(value: string | number | undefined) {  
   if (!value) return 'R$ 0,00';
 
   if (typeof value === 'number') {
@@ -128,7 +128,7 @@ function maskCpfCnpj(value: string | undefined) {
   }
 }
 
-function maskOAB(value?: string): string {
+function maskOAB(value: string | undefined): string {
   if (!value) return '';
 
   if (typeof value !== 'string') {
@@ -350,7 +350,7 @@ function maskDateTime(value: string | undefined): string {
     }
   }
 
-  if (formatted.length === 16 && !isValidDateTime(formatted)) {
+  if (formatted.length === 16 && !isValidMaskDateTime(formatted)) {
     return '';
   }
 

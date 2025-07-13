@@ -1,5 +1,5 @@
 {
-  "name": "@wbitencourt/util-mask",
+  "name": "@wbitencourt/util-dom",
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -7,9 +7,8 @@
   "scripts": {
     "build": "tsc"
   },
-  "dependencies": {
-    "clsx": "^2.1.1",
-    "tailwindcss": "^4.0.0",
-    "tailwind-merge": "^3.0.1"
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
   }
 }

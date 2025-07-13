@@ -1,5 +1,5 @@
 {
-  "name": "@wbitencourt/util-tailwind",
+  "name": "@wbitencourt/util-blob",
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
