@@ -2,10 +2,14 @@
   "name": "wbitencourt",
   "version": "1.0.1",
   "description": "",
+  "main": "dist/index.js",
   "bin": {
     "wbitencourt": "dist/index.js"
   },
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "build": "tsc"
   },
