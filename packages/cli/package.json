@@ -1,6 +1,6 @@
 {
   "name": "wbitencourt",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "description": "",
   "main": "dist/index.js",
   "bin": {
@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "chalk": "^5.4.1",
-    "fs-extra": "^11.3.0",
-    "@wbitencourt/util-mask": "^1.0.0"
+    "fs-extra": "^11.3.0"
   }
 }
