@@ -2,7 +2,6 @@
   "name": "wbitencourt",
   "version": "1.0.29",
   "description": "npm package with reusable utilities by Wendell Bitencourt",
-  "private": true,
   "workspaces": [
     "packages/**"
   ],
