@@ -1,6 +1,6 @@
 {
   "name": "wbitencourt",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "npm package with reusable utilities by Wendell Bitencourt",
   "bin": {
     "wbitencourt": "packages/cli/dist/index.js"
