@@ -3,8 +3,7 @@
   "version": "1.0.25",
   "description": "npm package with reusable utilities by Wendell Bitencourt",
   "files": [
-    "packages/cli/dist/*",
-    "packages/util/**/dist/*"
+    "packages/cli/dist/*"
   ],
   "workspaces": [
     "packages/**"
