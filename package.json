@@ -2,12 +2,7 @@
   "name": "wbitencourt",
   "version": "1.0.28",
   "description": "npm package with reusable utilities by Wendell Bitencourt",
-  "bin": {
-    "wbitencourt": "packages/cli/dist/index.js"
-  },
-  "files": [
-    "packages/cli/dist/*"
-  ],
+  "private": true,
   "workspaces": [
     "packages/**"
   ],
@@ -32,13 +27,8 @@
     "build": "npm run build --workspaces"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.4",
     "@types/node": "^24.0.10",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"
-  },
-  "dependencies": {
-    "chalk": "^5.4.1",
-    "fs-extra": "^11.3.0"
   }
 }
