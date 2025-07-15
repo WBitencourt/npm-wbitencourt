@@ -2,6 +2,10 @@
   "name": "wbitencourt",
   "version": "1.0.24",
   "description": "npm package with reusable utilities by Wendell Bitencourt",
+  "files": [
+    "packages/cli/dist/*",
+    "packages/util/**/dist/*"
+  ],
   "workspaces": [
     "packages/**"
   ],
