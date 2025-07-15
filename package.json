@@ -1,6 +1,6 @@
 {
   "name": "wbitencourt",
-  "version": "1.0.30",
+  "version": "1.0.28",
   "description": "npm package with reusable utilities by Wendell Bitencourt",
   "workspaces": [
     "packages/**"
