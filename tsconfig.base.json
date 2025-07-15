@@ -10,6 +10,7 @@
     "outDir": "dist",
     "lib": ["ES2022", "DOM"],
     "types": ["node", "vitest/globals"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   }
 }
