@@ -2,13 +2,6 @@
   "name": "wbitencourt",
   "version": "1.0.22",
   "description": "npm package with reusable utilities by Wendell Bitencourt",
-  "bin": {
-    "wbitencourt": "packages/cli/dist/index.js"
-  },
-  "files": [
-    "packages/cli/**/*",
-    "packages/util/**/*"
-  ],
   "workspaces": [
     "packages/**"
   ],
