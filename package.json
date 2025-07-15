@@ -6,7 +6,7 @@
     "wbitencourt": "packages/cli/dist/index.js"
   },
   "files": [
-    "packages/cli/dist/**/*",
+    "packages/cli/**/*",
     "packages/util/**/*"
   ],
   "workspaces": [
