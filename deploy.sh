@@ -4,7 +4,7 @@ npm run build
 
 git add .
 
-git commit -m "build: build all packages"
+git commit -m "build: building workspace"
 
 npm version patch
 
