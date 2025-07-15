@@ -1,6 +1,6 @@
 {
   "name": "wbitencourt",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "npm package with reusable utilities by Wendell Bitencourt",
   "files": [
     "packages/cli/dist/*"
