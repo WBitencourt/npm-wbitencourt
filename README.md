@@ -1,128 +1,93 @@
-# wbitencourt
+# 🚀 npm-wbitencourt
 
-This package, wbitencourt, is intended for personal use. It serves as a way to reuse and centralize code across my own projects, helping maintain consistency and avoid duplication. It is not designed for public or production use outside of my personal development environment, but feel free to use it if you find it helpful.
+A personal monorepo containing NPM tools and utilities developed by **Wendell Bitencourt** for personal use, projects and learning.
 
-## 📦 Installation
+## 📋 About the Repository
 
-### Global Installation (CLI)
+This repository represents my learning journey and development of tools that I use frequently in my projects. It is a space where I organize utilities, helper functions and CLI tools that make my daily work as a developer easier.
 
-```bash
-npm install -g wbitencourt
-```
+### 🎯 Goals
 
-### Project Installation
+- **Learning**: Explore advanced TypeScript concepts, monorepo management and NPM package publishing
+- **Reuse**: Centralize useful code that can be reused in different projects
+- **Experimentation**: Test new ideas and development approaches
+- **Productivity**: Create tools that speed up my workflow
 
-```bash
-npm install wbitencourt
-```
+## 📦 Included Packages
 
-## 🚀 CLI Usage
+### 🛠️ CLI Tool (`wbitencourt`)
 
-The CLI provides commands to quickly add utilities to your projects:
+A custom command line tool with development utilities.
 
-### Initialize
+**Main commands:**
 
-```bash
-npx wbitencourt@latest init
-```
+- `init` - Project initialization
+- `add` - Adding resources/dependencies
+- `version` - Version management
 
-### Add Utilities
+### 🔧 Utilities (`@wbitencourt/util`)
 
-```bash
-# Add mask utilities
-npx wbitencourt@latest add util-mask
+A complete library of utility functions for use in JavaScript/TypeScript projects.
 
-# Add all utilities
-npx wbitencourt@latest add util-all
-```
+**Utility categories:**
 
-## 📚 Available Utilities
-
-### @wbitencourt/util-mask
-
-Input masking functions for Brazilian formats and common data types:
-
-- **CurrencyBRL()** - Brazilian currency (R$ 0,00)
-- **Cpf()** - Brazilian CPF (000.000.000-00)
-- **Cnpj()** - Brazilian CNPJ (00.000.000/0000-00)
-- **CpfCnpj()** - Auto-detects CPF or CNPJ format
-- **NumeroProcesso()** - Brazilian legal process number
-- **OAB()** - Brazilian Bar Association number (XX-000000)
-- **Email()** - Email validation and formatting
-- **Phone()** - Brazilian phone number (+55 (00) 00000-0000)
-- **Uuid()** - UUID formatting
-- **DateTime()** - Date and time formatting
-
-## 💡 Usage Examples
-
-### Using with CLI (copied to your project)
-
-```typescript
-import { maskCpf, maskPhone, maskCurrencyBRL } from "./src/util/mask";
-
-// Format CPF
-const cpf = maskCpf("12345678901"); // 123.456.789-01
-
-// Format phone
-const phone = maskPhone("11999887766"); // +55 (11) 99988-7766
-
-// Format currency
-const currency = maskCurrencyBRL(1234.56); // R$ 1.234,56
-```
-
-### Using as npm packages
-
-```typescript
-import { maskCpf } from "@wbitencourt/util-mask";
-
-const formattedCpf = maskCpf("12345678901");
-```
+- **Array** - Array manipulation and operations
+- **Blob** - Working with files and binary data
+- **Classname** - Utilities for CSS classes
+- **DOM** - DOM element manipulation
+- **File** - File operations
+- **Mask** - Masks for data formatting (CPF, CNPJ, phone, etc.)
+- **String** - String manipulation
+- **Tailwind** - Utilities for Tailwind CSS
+- **Validation** - Validation functions
 
 ## 🏗️ Project Structure
 
 ```
-wbitencourt/
+npm-wbitencourt/
 ├── packages/
-│   ├── cli/                    # CLI tool
-│   │   ├── src/
-│   │   │   ├── commands/       # CLI commands (init, add)
-│   │   │   ├── functions/      # CLI helper functions
-│   │   │   └── index.ts        # CLI entry point
-│   │   └── package.json
-│   └── util/                   # Utility packages
-│       └── mask/               # Masking utilities
-│           ├── src/
-│           │   ├── index.ts
-│           │   └── *.spec.ts   # Tests
-│           └── package.json
-├── package.json                # Root package.json
-└── README.md
+│   ├── cli/          # Command line tool
+│   └── util/         # Utilities library
+├── preview/          # Examples and usage tests
+├── package.json      # Workspace configuration
+└── README.md         # This file
 ```
 
-## 🧪 Testing
+## 🔧 Development
+
+This project uses **npm workspaces** to manage multiple packages in a single repository.
+
+### Main commands:
 
 ```bash
-npm run test
-```
+# Install dependencies
+npm install
 
-## 🔨 Building
-
-```bash
+# Build all packages
 npm run build
+
+# Run tests
+npm run test
+
+# Publish packages to npm
+./deploy.sh
 ```
 
-## 👤 Author
+## 📚 Detailed Documentation
 
-**Wendell Bitencourt**
+For specific information about each package, check:
 
-- NPM: [wbitencourt](https://www.npmjs.com/package/wbitencourt)
-- GitHub: [@WBitencourt](https://github.com/WBitencourt)
-- Repository: [npm-wbitencourt](https://github.com/WBitencourt/npm-wbitencourt)
+- [CLI Documentation](./packages/cli/README.md)
+- [Utilities Documentation](./packages/util/README.md)
 
-## 🤝 Contributing
+## 🤝 Contributions
 
-Issues and pull requests are welcome!
+This is a personal project focused on learning. While it is not open for external contributions at the moment, feel free to:
 
-## 📝 License
+- Explore the code
+- Use it as reference for your own projects
+- Report bugs or suggestions through [Issues](https://github.com/WBitencourt/npm-wbitencourt/issues)
 
-ISC
+## 📄 License
+
+This project is licensed under the [MIT License](./LICENSE) – © 2025 Wendell Bitencourt

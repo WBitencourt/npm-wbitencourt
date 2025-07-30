@@ -20,6 +20,10 @@ function isValidMaskDateTime(input: string) {
 }
 
 function maskCurrencyBRL(value: string | number | undefined) {  
+  if (value === 'R$ 0,0') {
+    return '';
+  }
+
   if (!value) return 'R$ 0,00';
 
   if (typeof value === 'number') {
@@ -129,6 +133,36 @@ function maskCpfCnpj(value: string | undefined) {
 }
 
 function maskOAB(value: string | undefined): string {
+  const ufs = [
+    'RO',
+    'AC',
+    'AM',
+    'RR',
+    'PA',
+    'AP',
+    'TO',
+    'MA',
+    'PI',
+    'CE',
+    'RN',
+    'PB',
+    'PE',
+    'AL',
+    'SE',
+    'BA',
+    'MG',
+    'ES',
+    'RJ',
+    'SP',
+    'PR',
+    'SC',
+    'RS',
+    'MS',
+    'MT',
+    'GO',
+    'DF',
+  ]
+
   if (!value) return '';
 
   if (typeof value !== 'string') {
@@ -148,17 +182,38 @@ function maskOAB(value: string | undefined): string {
     .replace(/[^0-9]/g, '')
     .slice(0, 6);
 
-  // Se tiver menos de 2 letras, retorna só elas
-  if (onlyLetters.length < 2) {
+
+  // Se não tiver letras e não tiver 6 números, retorna vazio
+  if (onlyLetters.length === 0 && onlyNumbers.length !== 6) {
+    return '';
+  }
+
+  // Se tiver 1 letra e não tiver números, retorna a letra
+  if (onlyLetters.length === 1 && onlyNumbers.length === 0) {
     return onlyLetters;
   }
 
+  // Se tiver menos de 2 letras, retorna as letras e números se houver
+  if (onlyLetters.length < 2) {
+    return `${onlyLetters}-${onlyNumbers}`;
+  }
+
   // Se tiver exatamente 2 letras mas ZERO números, não mostra hífen
-  if (onlyNumbers.length === 0) {
+  if (onlyLetters.length === 2 && onlyNumbers.length === 0) {
     return onlyLetters;
   }
 
   // Quando houver >=1 número, monta XX-123...
+  if (onlyLetters.length === 2 && onlyNumbers.length === 6) {
+    const uf = onlyLetters.slice(0, 2);
+
+    if (ufs.includes(uf)) {
+      return `${onlyLetters}-${onlyNumbers}`;
+    }
+
+    return `UF-${onlyNumbers}`;
+  }
+
   return `${onlyLetters}-${onlyNumbers}`;
 }
 

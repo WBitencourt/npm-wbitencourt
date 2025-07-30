@@ -1,3 +1,3 @@
-import { array } from "@wbitencourt/util-array";
+import { util } from "@wbitencourt/util";
 
-console.log(array.order.asc([1, 2, 3, 4, 5]));
+console.log(util.array.order.asc([1, 2, 3, 4, 5]));

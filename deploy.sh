@@ -6,14 +6,14 @@ git add .
 
 git commit -m "build: building workspace"
 
-cd packages/cli
+npm version patch -w wbitencourt
 
-npm version patch
+npm version patch -w @wbitencourt/util
 
 git commit -m "deploy: update version to $npm_package_version"
 
 git push
 
-npm publish --access public
+npm publish --access public -w wbitencourt
 
-cd ../../
+npm publish --access public -w @wbitencourt/util

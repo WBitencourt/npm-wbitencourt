@@ -1,6 +1,6 @@
 import convertLiteralDataStorage, { Unit }  from 'bytes';
 
-interface IsFileSizeExceeded {
+export interface IsFileSizeExceeded {
   size: number;
   unit: Unit;
   limit: {
@@ -9,13 +9,13 @@ interface IsFileSizeExceeded {
   }
 }
 
-interface ConvertUnit {
+export interface ConvertUnit {
   size: number;
   unit: Unit;
   newUnit: Unit;
 }
 
-interface ConvertToBytes {
+export interface ConvertToBytes {
   size: number;
   unit: Unit;
 }
