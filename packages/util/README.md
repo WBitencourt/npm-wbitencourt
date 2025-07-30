@@ -344,4 +344,4 @@ Contributions are welcome! Feel free to open a pull request.
 
 ## 📄 License
 
-This project is licensed under the [MIT License](./LICENSE) – © 2025 Wendell Bitencourt
+This project is licensed under the [MIT License](https://github.com/WBitencourt/npm-wbitencourt/blob/master/LICENSE) – © 2025 Wendell Bitencourt
