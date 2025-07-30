@@ -351,7 +351,7 @@ npm run build
 npm run test
 ```
 
----
+&nbsp;
 
 ## 📊 Compatibility
 
@@ -360,13 +360,13 @@ npm run test
 - ✅ **Node.js** - Compatible with server environment
 - ✅ **Modern Browsers** - Support for ES2020+
 
----
+&nbsp;
 
 ## 🐛 Bug Reports
 
 If you find any problems, please [open an issue](https://github.com/wbitencourt/npm-wbitencourt/issues).
 
----
+&nbsp;
 
 ## 🤝 Contributions
 
@@ -380,7 +380,7 @@ Contributions are welcome! Feel free to open a pull request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
----
+&nbsp;
 
 ## 🔗 Useful Links
 
@@ -388,7 +388,7 @@ Contributions are welcome! Feel free to open a pull request.
 - [GitHub Repository](https://github.com/wbitencourt/npm-wbitencourt)
 - [API Documentation](https://github.com/wbitencourt/npm-wbitencourt/tree/main/packages/util/src)
 
----
+&nbsp;
 
 ## 📄 License
 
