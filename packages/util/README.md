@@ -5,11 +5,15 @@
 
 > Complete JavaScript/TypeScript utilities library for personal development
 
+---
+
 ## 📋 About
 
 `@wbitencourt/util` is a complete utilities library that offers essential features for building applications in the Brazilian context. It includes masks, validations, data handling and much more, all in one easy-to-use API.
 
 This library was created for personal use, serving as a way to reuse and organize code in my own projects, helping to keep consistency and avoid duplication. It was not designed for public use or production outside my personal development environment, but feel free to use it if you find it helpful.
+
+---
 
 ## 🚀 Installation
 
@@ -31,6 +35,8 @@ yarn add @wbitencourt/util
 pnpm add @wbitencourt/util
 ```
 
+---
+
 ## 📖 Basic Usage
 
 ```typescript
@@ -48,6 +54,8 @@ const isValidEmail = util.validation.format.email("user@example.com");
 const formattedValue = util.string.format.numberBRLCurrency(1234.5);
 // Result: "R$ 1.234,50"
 ```
+
+---
 
 ## 🛠️ Available Features
 
@@ -72,6 +80,8 @@ Complete set of masks for Brazilian data:
 - **Brazilian Currency (BRL)** - Formatting with R$ symbol
 - **Date and Time** - Formats dd/mm/yyyy and dd/mm/yyyy hh:mm
 
+&nbsp;
+
 ### ✅ Validations (`util.validation`)
 
 Specific validations for the Brazilian context:
@@ -85,6 +95,8 @@ Specific validations for the Brazilian context:
 
 - **Email** - RFC compliant format validation
 - **Date/Time** - Valid format verification
+
+&nbsp;
 
 ### 🔤 String Manipulation (`util.string`)
 
@@ -104,6 +116,8 @@ Advanced utilities for working with text:
 
 - **Line Break Counting** - Text structure analysis
 
+&nbsp;
+
 ### 📂 File Manipulation (`util.file`)
 
 Complete system for working with files:
@@ -116,6 +130,8 @@ Complete system for working with files:
 #### Validation
 
 - **Size Verification** - Comparison with defined limits
+
+&nbsp;
 
 ### 📊 Array Manipulation (`util.array`)
 
@@ -130,6 +146,8 @@ Efficient operations with arrays:
 
 - **Equality** - Deep comparison of arrays
 
+&nbsp;
+
 ### 🏷️ Object Manipulation (`util.object`)
 
 Utilities for working with objects:
@@ -137,6 +155,8 @@ Utilities for working with objects:
 #### Comparison
 
 - **Deep Equality** - Recursive comparison of complex objects
+
+&nbsp;
 
 ### 🌐 DOM Utilities (`util.dom`)
 
@@ -146,6 +166,8 @@ Features for browser interaction:
 
 - **Copy Text** - Copy to clipboard with async/await support
 
+&nbsp;
+
 ### 📄 Blob Manipulation (`util.blob`)
 
 Conversion and manipulation of blobs:
@@ -153,6 +175,8 @@ Conversion and manipulation of blobs:
 #### Conversion
 
 - **To String** - Async conversion from blob to text
+
+&nbsp;
 
 ### 🎨 CSS Classes (`util.classname` and `util.tailwind`)
 
@@ -163,6 +187,8 @@ CSS class optimization:
 - **Class Merging** - Optimized combination with Tailwind CSS
 - **Conflict Resolution** - Automatic removal of conflicting classes
 
+&nbsp;
+
 ### 📋 Option Lists (`util.picklist`)
 
 Structured data for forms:
@@ -170,6 +196,8 @@ Structured data for forms:
 #### Brazilian States
 
 - **Complete UF List** - All states with ID, abbreviation and region
+
+---
 
 ## 💡 Practical Examples
 
@@ -202,6 +230,8 @@ const sp = states.find((uf) => uf.sigla === "SP");
 console.log(`State: ${sp?.sigla} - Region: ${sp?.regiao}`); // "State: SP - Region: Sudeste"
 ```
 
+&nbsp;
+
 ### Commercial Data Processing
 
 ```typescript
@@ -228,6 +258,8 @@ if (util.file.isSizeExceeded(file)) {
   console.log("File exceeds the allowed limit");
 }
 ```
+
+&nbsp;
 
 ### Advanced Data Manipulation
 
@@ -258,6 +290,8 @@ const truncatedDescription = util.string.truncate.textWithEllipsis(
 console.log(truncatedDescription); // "This is a very long descripti..."
 ```
 
+---
+
 ## 🧪 Tests
 
 The library includes a complete test suite to ensure quality and reliability:
@@ -272,6 +306,8 @@ npm run test:watch
 # Generate coverage report
 npm run test:coverage
 ```
+
+---
 
 ## 📁 Project Structure
 
@@ -295,6 +331,8 @@ npm run test:coverage
 └── tsconfig.json
 ```
 
+---
+
 ## 🔧 Development
 
 ### Requirements
@@ -313,6 +351,8 @@ npm run build
 npm run test
 ```
 
+---
+
 ## 📊 Compatibility
 
 - ✅ **TypeScript** - Complete support with types
@@ -320,9 +360,13 @@ npm run test
 - ✅ **Node.js** - Compatible with server environment
 - ✅ **Modern Browsers** - Support for ES2020+
 
+---
+
 ## 🐛 Bug Reports
 
 If you find any problems, please [open an issue](https://github.com/wbitencourt/npm-wbitencourt/issues).
+
+---
 
 ## 🤝 Contributions
 
@@ -336,11 +380,15 @@ Contributions are welcome! Feel free to open a pull request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+---
+
 ## 🔗 Useful Links
 
 - [NPM Package](https://www.npmjs.com/package/@wbitencourt/util)
 - [GitHub Repository](https://github.com/wbitencourt/npm-wbitencourt)
 - [API Documentation](https://github.com/wbitencourt/npm-wbitencourt/tree/main/packages/util/src)
+
+---
 
 ## 📄 License
 
