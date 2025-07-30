@@ -5,11 +5,15 @@
 
 > CLI for installing and managing reusable utilities by Wendell Bitencourt
 
+&nbsp;
+
 ## 📋 About
 
 `wbitencourt` is a command-line tool that allows you to easily install JavaScript/TypeScript utilities in your projects. With it, you can add specific modules or all utilities at once, copying files directly to your project structure.
 
 This project is intended for personal use, serving as a way to reuse and centralize code in my own projects, helping to maintain consistency and avoid duplication. It was not designed for public use or production outside my personal development environment, but feel free to use it if you find it useful.
+
+&nbsp;
 
 ## 🚀 Installation
 
@@ -24,6 +28,8 @@ npm install -g wbitencourt
 ```bash
 npx wbitencourt@latest <command>
 ```
+
+&nbsp;
 
 ## 📖 Available Commands
 
@@ -77,6 +83,8 @@ Shows package version information.
 npx wbitencourt@latest version
 ```
 
+&nbsp;
+
 ## 📁 File Structure
 
 When you run the `add` command, files are copied to the following structure in your project:
@@ -95,6 +103,8 @@ your-project/
         ├── tailwind/
         └── validation/
 ```
+
+&nbsp;
 
 ## 🛠️ Utility Features
 
@@ -125,6 +135,8 @@ your-project/
 
 Each utility contains specific functions for its area of operation.
 
+&nbsp;
+
 ## 💡 Usage Example
 
 ```bash
@@ -141,6 +153,8 @@ const formattedCpf = mask.maskCpf('12345678901');
 
 console.log(formattedCpf); // 123.456.789-01
 ```
+
+&nbsp;
 
 ## 🔧 Development
 
@@ -161,13 +175,19 @@ packages/cli/
 └── tsconfig.json
 ```
 
+&nbsp;
+
 ## 🐛 Report Bugs
 
 If you find any issues, please [open an issue](https://github.com/WBitencourt/npm-wbitencourt/issues).
 
+&nbsp;
+
 ## 🤝 Contributions
 
 Contributions are welcome! Feel free to open a pull request.
+
+&nbsp;
 
 ## 📄 License
 

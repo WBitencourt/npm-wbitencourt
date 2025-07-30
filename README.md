@@ -91,3 +91,4 @@ This is a personal project focused on learning. While it is not open for externa
 ## 📄 License
 
 This project is licensed under the [MIT License](https://github.com/WBitencourt/npm-wbitencourt/blob/master/LICENSE) – © 2025 Wendell Bitencourt
+
