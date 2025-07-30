@@ -1,4 +1,4 @@
-# @wbitencourt/cli
+# wbitencourt
 
 [![npm version](https://badge.fury.io/js/wbitencourt.svg)](https://badge.fury.io/js/wbitencourt)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
