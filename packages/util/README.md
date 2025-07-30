@@ -5,7 +5,7 @@
 
 > Complete JavaScript/TypeScript utilities library for personal development
 
----
+&nbsp;
 
 ## 📋 About
 
@@ -13,7 +13,7 @@
 
 This library was created for personal use, serving as a way to reuse and organize code in my own projects, helping to keep consistency and avoid duplication. It was not designed for public use or production outside my personal development environment, but feel free to use it if you find it helpful.
 
----
+&nbsp;
 
 ## 🚀 Installation
 
@@ -35,7 +35,7 @@ yarn add @wbitencourt/util
 pnpm add @wbitencourt/util
 ```
 
----
+&nbsp;
 
 ## 📖 Basic Usage
 
@@ -55,7 +55,7 @@ const formattedValue = util.string.format.numberBRLCurrency(1234.5);
 // Result: "R$ 1.234,50"
 ```
 
----
+&nbsp;
 
 ## 🛠️ Available Features
 
@@ -197,7 +197,7 @@ Structured data for forms:
 
 - **Complete UF List** - All states with ID, abbreviation and region
 
----
+&nbsp;
 
 ## 💡 Practical Examples
 
@@ -290,7 +290,7 @@ const truncatedDescription = util.string.truncate.textWithEllipsis(
 console.log(truncatedDescription); // "This is a very long descripti..."
 ```
 
----
+&nbsp;
 
 ## 🧪 Tests
 
@@ -307,7 +307,7 @@ npm run test:watch
 npm run test:coverage
 ```
 
----
+&nbsp;
 
 ## 📁 Project Structure
 
@@ -331,7 +331,7 @@ npm run test:coverage
 └── tsconfig.json
 ```
 
----
+&nbsp;
 
 ## 🔧 Development
 
