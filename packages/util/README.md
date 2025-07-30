@@ -1,6 +1,6 @@
 # @wbitencourt/util
 
-[![npm version](https://badge.fury.io/js/@wbitencourt/util.svg)](https://badge.fury.io/js/@wbitencourt/util)
+[![npm version](https://img.shields.io/npm/v/%40wbitencourt%2Futil)](https://www.npmjs.com/package/@wbitencourt/util)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > Complete JavaScript/TypeScript utilities library for personal development
