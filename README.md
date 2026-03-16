@@ -1,4 +1,4 @@
-# 🚀 npm-wbitencourt
+# 📦 npm-wbitencourt
 
 A personal monorepo containing NPM tools and utilities developed by **Wendell Bitencourt** for personal use, projects and learning.
 
