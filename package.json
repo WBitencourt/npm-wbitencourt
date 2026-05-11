@@ -23,6 +23,10 @@
   "type": "module",
   "scripts": {
     "test": "npx vitest run",
-    "build": "npm run build --workspaces"
+    "build": "npm run build --workspaces",
+    "prepare": "npm run build",
+    "pack:util": "npm --prefix packages/util run build && cd packages/util && npm pack --dry-run && cd ../..",
+    "pack:cli": "npm --prefix packages/cli run build && cd packages/cli && npm pack --dry-run && cd ../..",
+    "deploy": "./deploy.sh"
   }
 }
