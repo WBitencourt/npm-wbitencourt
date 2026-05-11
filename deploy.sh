@@ -1,5 +1,7 @@
 #!/bin/bash
 
+npm login
+
 npm run build
 
 git add .
