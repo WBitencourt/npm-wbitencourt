@@ -4,6 +4,9 @@ import { classname } from "./classname";
 import { dom } from "./dom";
 import { file } from "./file";
 import { mask } from "./mask";
+import { object } from "./object";
+import { picklist } from "./picklist";
+import { string } from "./string";
 import { tailwind } from "./tailwind";
 import { validation } from "./validation";
 
@@ -14,6 +17,9 @@ export const util = {
   dom,
   file,
   mask,
+  object,
+  picklist,
+  string,
   tailwind,
   validation,
 }
