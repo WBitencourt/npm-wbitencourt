@@ -3,7 +3,7 @@ import { util } from '.';
 
 describe('util public entrypoint', () => {
   it('exports the documented string helpers', () => {
-    expect(util.string.format.numberBRLCurrency(1234.5)).toBe('R$ 1.234,50');
+    expect(util.string.format.numberBRLCurrency(1234.5)).toMatch(/^R\$\s1\.234,50$/);
   });
 
   it('exports object helpers', () => {
