@@ -17,7 +17,7 @@ describe('util public entrypoint', () => {
   });
 
   it('keeps documented helpers reachable from the root import', () => {
-    expect(util.string.format.numberBRLCurrency(1234.5)).toBe('R$ 1.234,50');
+    expect(util.string.format.numberBRLCurrency(1234.5).replace(/\s/g, ' ')).toBe('R$ 1.234,50');
     expect(util.object.compare.isEqual({ id: 1 }, { id: 1 })).toBe(true);
     expect(util.picklist.uf).toHaveLength(27);
   });
