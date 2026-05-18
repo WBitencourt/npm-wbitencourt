@@ -6,8 +6,18 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+async function getUtilRoot() {
+  const bundledUtilRoot = path.resolve(__dirname, '../util');
+
+  if (await fs.pathExists(path.join(bundledUtilRoot, 'src'))) {
+    return bundledUtilRoot;
+  }
+
+  return path.resolve(__dirname, '../../../../packages/util');
+}
+
 export async function addToClient(command: string) {
-  const srcRoot = path.resolve(__dirname, '../../../../packages/util');
+  const srcRoot = await getUtilRoot();
   const destRoot = process.cwd();
 
   switch (command) {
@@ -84,17 +94,19 @@ export async function addToClient(command: string) {
     }
 
     case 'util-all': {
-      const utilDirs = await fs.readdir(srcRoot);
+      const utilDirEntries = await fs.readdir(path.join(srcRoot, 'src'), { withFileTypes: true });
       
-      for (const dir of utilDirs) {
-        const from = path.join(srcRoot, 'src', dir);
-        const to = path.join(destRoot, 'src/util', dir);
+      for (const dirEntry of utilDirEntries) {
+        if (!dirEntry.isDirectory()) continue;
+
+        const from = path.join(srcRoot, 'src', dirEntry.name);
+        const to = path.join(destRoot, 'src/util', dirEntry.name);
     
         const fromExists = await fs.pathExists(from);
         if (!fromExists) continue;
     
         await fs.copy(from, to);
-        console.log(chalk.green(`${dir} copied to src/util/${dir}`));
+        console.log(chalk.green(`${dirEntry.name} copied to src/util/${dirEntry.name}`));
       }
     
       break;
