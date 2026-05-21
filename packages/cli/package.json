@@ -11,7 +11,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc && node -e \"const fs=require('node:fs');fs.rmSync('dist/templates',{recursive:true,force:true});fs.cpSync('../util/src','dist/templates',{recursive:true});\""
   },
   "keywords": [],
   "author": "",
