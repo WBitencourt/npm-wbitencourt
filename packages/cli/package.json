@@ -11,7 +11,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "rm -rf dist && tsc && mkdir -p dist/templates && cp -R ../util/src dist/templates/util"
   },
   "keywords": [],
   "author": "",
