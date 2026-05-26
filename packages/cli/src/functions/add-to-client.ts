@@ -6,102 +6,93 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const packagedTemplateRoot = path.resolve(__dirname, '../templates');
+const developmentTemplateRoot = path.resolve(__dirname, '../../../../packages/util/src');
+
+const utilityCommands: Record<string, string> = {
+  'util-array': 'array',
+  'util-blob': 'blob',
+  'util-classname': 'classname',
+  'util-dom': 'dom',
+  'util-file': 'file',
+  'util-mask': 'mask',
+  'util-object': 'object',
+  'util-picklist': 'picklist',
+  'util-string': 'string',
+  'util-tailwind': 'tailwind',
+  'util-validation': 'validation',
+};
+
+async function resolveTemplateRoot() {
+  if (await fs.pathExists(packagedTemplateRoot)) {
+    return packagedTemplateRoot;
+  }
+
+  if (await fs.pathExists(developmentTemplateRoot)) {
+    return developmentTemplateRoot;
+  }
+
+  throw new Error('Utility templates are missing from this installation.');
+}
+
+async function getTemplateDirectories(templateRoot: string) {
+  const entries = await fs.readdir(templateRoot, { withFileTypes: true });
+
+  return entries
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort((left, right) => left.localeCompare(right));
+}
+
+async function copyUtility(templateRoot: string, destRoot: string, utilityName: string) {
+  const from = path.join(templateRoot, utilityName);
+  const to = path.join(destRoot, 'src/util', utilityName);
+
+  if (!await fs.pathExists(from)) {
+    throw new Error(`Utility template "${utilityName}" is missing.`);
+  }
+
+  if (await fs.pathExists(to)) {
+    throw new Error(`Refusing to overwrite existing utility directory: ${path.relative(destRoot, to)}`);
+  }
+
+  await fs.copy(from, to, { overwrite: false, errorOnExist: true });
+  console.log(chalk.green(`${utilityName} copied to src/util/${utilityName}`));
+}
+
 export async function addToClient(command: string) {
-  const srcRoot = path.resolve(__dirname, '../../../../packages/util');
+  const templateRoot = await resolveTemplateRoot();
   const destRoot = process.cwd();
 
-  switch (command) {
-    case 'util-array': {
-      const from = path.join(srcRoot, 'src/array');
-      const to = path.join(destRoot, 'src/util/array');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-array copied to src/util/array'));
-      break;
-    }
+  if (command === 'util-all') {
+    const utilities = await getTemplateDirectories(templateRoot);
+    const existingUtilities: string[] = [];
 
-    case 'util-blob': {
-      const from = path.join(srcRoot, 'src/blob');
-      const to = path.join(destRoot, 'src/util/blob');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-blob copied to src/util/blob'));
-      break;
-    }
+    for (const utilityName of utilities) {
+      const to = path.join(destRoot, 'src/util', utilityName);
 
-    case 'util-classname': {
-      const from = path.join(srcRoot, 'src/classname');
-      const to = path.join(destRoot, 'src/util/classname');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-classname copied to src/util/classname'));
-      break;
-    }
-
-    case 'util-dom': {
-      const from = path.join(srcRoot, 'src/dom');
-      const to = path.join(destRoot, 'src/util/dom');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-dom copied to src/util/dom'));
-      break;
-    }
-
-    case 'util-file': {
-      const from = path.join(srcRoot, 'src/file');
-      const to = path.join(destRoot, 'src/util/file');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-file copied to src/util/file'));
-      break;
-    }
-
-    case 'util-mask': {
-      const from = path.join(srcRoot, 'src/mask');
-      const to = path.join(destRoot, 'src/util/mask');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-mask copied to src/util/mask'));
-      break;
-    }
-
-    case 'util-string': {
-      const from = path.join(srcRoot, 'src/string');
-      const to = path.join(destRoot, 'src/util/string');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-string copied to src/util/string'));
-      break;
-    }
-
-    case 'util-tailwind': {
-      const from = path.join(srcRoot, 'src/tailwind');
-      const to = path.join(destRoot, 'src/util/tailwind');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-tailwind copied to src/util/tailwind'));
-      break;
-    }
-
-    case 'util-validation': {
-      const from = path.join(srcRoot, 'src/validation');
-      const to = path.join(destRoot, 'src/util/validation');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-validation copied to src/util/validation'));
-      break;
-    }
-
-    case 'util-all': {
-      const utilDirs = await fs.readdir(srcRoot);
-      
-      for (const dir of utilDirs) {
-        const from = path.join(srcRoot, 'src', dir);
-        const to = path.join(destRoot, 'src/util', dir);
-    
-        const fromExists = await fs.pathExists(from);
-        if (!fromExists) continue;
-    
-        await fs.copy(from, to);
-        console.log(chalk.green(`${dir} copied to src/util/${dir}`));
+      if (await fs.pathExists(to)) {
+        existingUtilities.push(path.relative(destRoot, to));
       }
-    
-      break;
     }
 
-    default:
-      console.log(chalk.red(`add command "${command}" not recognized.`));
-      break;
+    if (existingUtilities.length > 0) {
+      throw new Error(`Refusing to overwrite existing utility directories: ${existingUtilities.join(', ')}`);
+    }
+
+    for (const utilityName of utilities) {
+      await copyUtility(templateRoot, destRoot, utilityName);
+    }
+
+    return;
   }
+
+  const utilityName = utilityCommands[command];
+
+  if (!utilityName) {
+    console.log(chalk.red(`add command "${command}" not recognized.`));
+    return;
+  }
+
+  await copyUtility(templateRoot, destRoot, utilityName);
 };
