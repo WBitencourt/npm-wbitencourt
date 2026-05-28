@@ -11,7 +11,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc && node scripts/copy-templates.mjs"
+    "build": "node scripts/clean-dist.mjs && tsc && node scripts/copy-templates.mjs"
   },
   "keywords": [],
   "author": "",
