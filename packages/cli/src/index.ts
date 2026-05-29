@@ -26,4 +26,8 @@ const main = async () => {
   }
 };
 
-main();
+main().catch((error) => {
+  const message = error instanceof Error ? error.message : String(error);
+  console.error(chalk.red(message));
+  process.exit(1);
+});
