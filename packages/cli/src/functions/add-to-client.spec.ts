@@ -41,4 +41,11 @@ describe('CLI: addToClient', () => {
     await expect(addToClient('util-mask')).rejects.toThrow('refusing to overwrite');
     await expect(fs.readFile(existingFile, 'utf8')).resolves.toBe('custom user code');
   });
+
+  it('refuses util-all before copying anything when a utility already exists', async () => {
+    await fs.outputFile(path.join(tempDir, 'src/util/mask/index.ts'), 'custom user code');
+
+    await expect(addToClient('util-all')).rejects.toThrow('src/util/mask already exists');
+    expect(await fs.pathExists(path.join(tempDir, 'src/util/array'))).toBe(false);
+  });
 });

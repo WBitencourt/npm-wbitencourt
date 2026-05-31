@@ -38,12 +38,25 @@ async function copyUtility(templatesRoot: string, destRoot: string, utilityName:
   const from = path.join(templatesRoot, utilityName);
   const to = path.join(destRoot, 'src/util', utilityName);
 
-  if (await fs.pathExists(to)) {
-    throw new Error(`src/util/${utilityName} already exists; refusing to overwrite existing files.`);
-  }
+  await assertUtilitiesDoNotExist(destRoot, [utilityName]);
 
   await fs.copy(from, to, { errorOnExist: true, overwrite: false });
   console.log(chalk.green(`${utilityName} copied to src/util/${utilityName}`));
+}
+
+async function assertUtilitiesDoNotExist(destRoot: string, utilityNames: string[]) {
+  const existingUtilities = [];
+
+  for (const utilityName of utilityNames) {
+    const to = path.join(destRoot, 'src/util', utilityName);
+    if (await fs.pathExists(to)) {
+      existingUtilities.push(`src/util/${utilityName}`);
+    }
+  }
+
+  if (existingUtilities.length > 0) {
+    throw new Error(`${existingUtilities.join(', ')} already exists; refusing to overwrite existing files.`);
+  }
 }
 
 export async function addToClient(command: string) {
@@ -56,6 +69,8 @@ export async function addToClient(command: string) {
       .filter((entry) => entry.isDirectory())
       .map((entry) => entry.name)
       .sort();
+
+    await assertUtilitiesDoNotExist(destRoot, utilityDirs);
 
     for (const utilityName of utilityDirs) {
       await copyUtility(templatesRoot, destRoot, utilityName);
