@@ -11,7 +11,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "rm -rf dist && tsc && node --input-type=module -e \"import fs from 'fs-extra'; await fs.copy('../util/src', 'dist/templates', { filter: (src) => !src.endsWith('.spec.ts') });\""
   },
   "keywords": [],
   "author": "",

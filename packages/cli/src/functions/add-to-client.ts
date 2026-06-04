@@ -6,102 +6,79 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export async function addToClient(command: string) {
-  const srcRoot = path.resolve(__dirname, '../../../../packages/util');
-  const destRoot = process.cwd();
+const templateByCommand: Record<string, string> = {
+  "util-array": "array",
+  "util-blob": "blob",
+  "util-classname": "classname",
+  "util-dom": "dom",
+  "util-file": "file",
+  "util-mask": "mask",
+  "util-object": "object",
+  "util-picklist": "picklist",
+  "util-string": "string",
+  "util-tailwind": "tailwind",
+  "util-validation": "validation",
+};
 
-  switch (command) {
-    case 'util-array': {
-      const from = path.join(srcRoot, 'src/array');
-      const to = path.join(destRoot, 'src/util/array');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-array copied to src/util/array'));
-      break;
-    }
-
-    case 'util-blob': {
-      const from = path.join(srcRoot, 'src/blob');
-      const to = path.join(destRoot, 'src/util/blob');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-blob copied to src/util/blob'));
-      break;
-    }
-
-    case 'util-classname': {
-      const from = path.join(srcRoot, 'src/classname');
-      const to = path.join(destRoot, 'src/util/classname');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-classname copied to src/util/classname'));
-      break;
-    }
-
-    case 'util-dom': {
-      const from = path.join(srcRoot, 'src/dom');
-      const to = path.join(destRoot, 'src/util/dom');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-dom copied to src/util/dom'));
-      break;
-    }
-
-    case 'util-file': {
-      const from = path.join(srcRoot, 'src/file');
-      const to = path.join(destRoot, 'src/util/file');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-file copied to src/util/file'));
-      break;
-    }
-
-    case 'util-mask': {
-      const from = path.join(srcRoot, 'src/mask');
-      const to = path.join(destRoot, 'src/util/mask');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-mask copied to src/util/mask'));
-      break;
-    }
-
-    case 'util-string': {
-      const from = path.join(srcRoot, 'src/string');
-      const to = path.join(destRoot, 'src/util/string');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-string copied to src/util/string'));
-      break;
-    }
-
-    case 'util-tailwind': {
-      const from = path.join(srcRoot, 'src/tailwind');
-      const to = path.join(destRoot, 'src/util/tailwind');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-tailwind copied to src/util/tailwind'));
-      break;
-    }
-
-    case 'util-validation': {
-      const from = path.join(srcRoot, 'src/validation');
-      const to = path.join(destRoot, 'src/util/validation');
-      await fs.copy(from, to);
-      console.log(chalk.green('util-validation copied to src/util/validation'));
-      break;
-    }
-
-    case 'util-all': {
-      const utilDirs = await fs.readdir(srcRoot);
-      
-      for (const dir of utilDirs) {
-        const from = path.join(srcRoot, 'src', dir);
-        const to = path.join(destRoot, 'src/util', dir);
-    
-        const fromExists = await fs.pathExists(from);
-        if (!fromExists) continue;
-    
-        await fs.copy(from, to);
-        console.log(chalk.green(`${dir} copied to src/util/${dir}`));
-      }
-    
-      break;
-    }
-
-    default:
-      console.log(chalk.red(`add command "${command}" not recognized.`));
-      break;
+async function getTemplateRoot() {
+  const packagedTemplateRoot = path.resolve(__dirname, "../templates");
+  if (await fs.pathExists(packagedTemplateRoot)) {
+    return packagedTemplateRoot;
   }
+
+  const workspaceTemplateRoot = path.resolve(__dirname, "../../../../packages/util/src");
+  if (await fs.pathExists(workspaceTemplateRoot)) {
+    return workspaceTemplateRoot;
+  }
+
+  throw new Error("Utility templates were not found in this package.");
+}
+
+async function listTemplateDirs(templateRoot: string) {
+  const entries = await fs.readdir(templateRoot, { withFileTypes: true });
+
+  return entries
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .filter((dir) => Object.values(templateByCommand).includes(dir));
+}
+
+async function assertDestinationsAreAvailable(destRoot: string, dirs: string[]) {
+  for (const dir of dirs) {
+    const to = path.join(destRoot, "src/util", dir);
+
+    if (await fs.pathExists(to)) {
+      throw new Error(`Cannot copy util-${dir}: ${to} already exists.`);
+    }
+  }
+}
+
+async function copyTemplateDirs(templateRoot: string, destRoot: string, dirs: string[]) {
+  await assertDestinationsAreAvailable(destRoot, dirs);
+
+  for (const dir of dirs) {
+    const from = path.join(templateRoot, dir);
+    const to = path.join(destRoot, "src/util", dir);
+
+    await fs.copy(from, to);
+    console.log(chalk.green(`${dir} copied to src/util/${dir}`));
+  }
+}
+
+export async function addToClient(command: string) {
+  const destRoot = process.cwd();
+  const templateRoot = await getTemplateRoot();
+
+  if (command === "util-all") {
+    const utilDirs = await listTemplateDirs(templateRoot);
+    await copyTemplateDirs(templateRoot, destRoot, utilDirs);
+    return;
+  }
+
+  const dir = templateByCommand[command];
+  if (!dir) {
+    throw new Error(`add command "${command}" not recognized.`);
+  }
+
+  await copyTemplateDirs(templateRoot, destRoot, [dir]);
 };
