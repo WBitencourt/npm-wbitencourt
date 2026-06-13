@@ -11,7 +11,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && tsc && node -e \"require('fs').cpSync('../util/src', 'dist/templates', { recursive: true, filter: (src) => !src.endsWith('.spec.ts') && !src.endsWith('README.md') })\""
   },
   "keywords": [],
   "author": "",
