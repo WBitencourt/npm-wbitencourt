@@ -8,10 +8,12 @@
   },
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "templates"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepack": "node scripts/copy-util-templates.mjs"
   },
   "keywords": [],
   "author": "",
