@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\" && tsc"
   },
   "devDependencies": {
     "@types/bytes": "^3.1.5",
