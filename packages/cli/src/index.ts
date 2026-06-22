@@ -26,4 +26,9 @@ const main = async () => {
   }
 };
 
-main();
+main().catch((error: unknown) => {
+  const message = error instanceof Error ? error.message : String(error);
+
+  console.error(chalk.red(message));
+  process.exitCode = 1;
+});
