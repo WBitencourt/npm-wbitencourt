@@ -11,7 +11,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "rm -rf dist && tsc && node ./scripts/copy-templates.mjs"
   },
   "keywords": [],
   "author": "",
