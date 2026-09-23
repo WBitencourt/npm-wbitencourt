@@ -21,4 +21,14 @@ describe('object.compare.isEqual', () => {
 
     expect(object.compare.isEqual(left, different)).toBe(false);
   });
+
+  it('keeps shared references equal to distinct but identical values', () => {
+    const child = { id: 1 };
+    const left = { first: child, second: child };
+    const right = { first: { id: 1 }, second: { id: 1 } };
+    const different = { first: { id: 1 }, second: { id: 2 } };
+
+    expect(object.compare.isEqual(left, right)).toBe(true);
+    expect(object.compare.isEqual(left, different)).toBe(false);
+  });
 });

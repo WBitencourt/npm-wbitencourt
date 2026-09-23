@@ -1,7 +1,7 @@
 function compareObjects<T>(
   obj1: T,
   obj2: T,
-  seen: WeakMap<object, object> = new WeakMap(),
+  seen: WeakMap<object, WeakSet<object>> = new WeakMap(),
 ): boolean {
   // Verifica se ambos são estritamente iguais (inclui null, undefined, etc)
   if (obj1 === obj2) {
@@ -16,11 +16,17 @@ function compareObjects<T>(
     return false;
   }
 
-  const previouslyCompared = seen.get(obj1);
-  if (previouslyCompared !== undefined) {
-    return previouslyCompared === obj2;
+  // Um mesmo objeto pode corresponder a mais de um valor igual do outro lado.
+  // Só o par já em comparação é tratado como ciclo.
+  let comparedWith = seen.get(obj1);
+  if (comparedWith?.has(obj2)) {
+    return true;
   }
-  seen.set(obj1, obj2);
+  if (!comparedWith) {
+    comparedWith = new WeakSet();
+    seen.set(obj1, comparedWith);
+  }
+  comparedWith.add(obj2);
 
   const keys1 = Object.keys(obj1) as Array<keyof T>;
   const keys2 = Object.keys(obj2) as Array<keyof T>;

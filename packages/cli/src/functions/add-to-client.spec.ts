@@ -45,6 +45,17 @@ describe('addToClient', () => {
     await expect(readFile(existingFile, 'utf8')).resolves.toBe('custom local changes');
   });
 
+  it('copies every utility module with util-all', async () => {
+    await addToClient('util-all');
+
+    expect(await pathExists(path.join(projectDir, 'src/util/array/index.ts'))).toBe(true);
+    expect(await pathExists(path.join(projectDir, 'src/util/object/index.ts'))).toBe(true);
+    expect(await pathExists(path.join(projectDir, 'src/util/picklist/index.ts'))).toBe(true);
+    expect(await pathExists(path.join(projectDir, 'src/util/string/index.ts'))).toBe(true);
+    expect(await pathExists(path.join(projectDir, 'src/util/README.md'))).toBe(false);
+    expect(await pathExists(path.join(projectDir, 'src/util/mask/mask-cpf-cnpj.spec.ts'))).toBe(false);
+  });
+
   it('preflights util-all before copying any utilities', async () => {
     const existingFile = path.join(projectDir, 'src/util/array/index.ts');
     await mkdir(path.dirname(existingFile), { recursive: true });
