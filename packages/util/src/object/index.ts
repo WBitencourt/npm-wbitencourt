@@ -1,5 +1,8 @@
-
-function compareObjects<T>(obj1: T, obj2: T): boolean {
+function compareObjects<T>(
+  obj1: T,
+  obj2: T,
+  seen: WeakMap<object, WeakSet<object>> = new WeakMap(),
+): boolean {
   // Verifica se ambos são estritamente iguais (inclui null, undefined, etc)
   if (obj1 === obj2) {
     return true;
@@ -12,6 +15,18 @@ function compareObjects<T>(obj1: T, obj2: T): boolean {
   ) {
     return false;
   }
+
+  // Um mesmo objeto pode corresponder a mais de um valor igual do outro lado.
+  // Só o par já em comparação é tratado como ciclo.
+  let comparedWith = seen.get(obj1);
+  if (comparedWith?.has(obj2)) {
+    return true;
+  }
+  if (!comparedWith) {
+    comparedWith = new WeakSet();
+    seen.set(obj1, comparedWith);
+  }
+  comparedWith.add(obj2);
 
   const keys1 = Object.keys(obj1) as Array<keyof T>;
   const keys2 = Object.keys(obj2) as Array<keyof T>;
@@ -37,7 +52,7 @@ function compareObjects<T>(obj1: T, obj2: T): boolean {
     }
 
     // Chamada recursiva para objetos aninhados
-    if (!compareObjects(val1, val2)) {
+    if (!compareObjects(val1, val2, seen)) {
       return false;
     }
   }
