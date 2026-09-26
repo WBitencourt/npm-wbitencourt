@@ -1,3 +1,5 @@
+import { object } from "../object/index.js";
+
 function sumByObjectKey<T>(array: T[], key: keyof T) {
   const initialValues = { sum: 0 };
 
@@ -54,13 +56,21 @@ function isEqual(a: unknown[], b: unknown[]) {
   return a.every((item, index) => {
     const other = b[index];
 
+    if (item === other) {
+      return true;
+    }
+
     // Comparação simples por valor
     if (typeof item !== 'object' || item === null) {
       return item === other;
     }
 
-    // Comparação profunda para objetos
-    return JSON.stringify(item) === JSON.stringify(other);
+    // JSON.stringify lança TypeError em referências circulares.
+    try {
+      return JSON.stringify(item) === JSON.stringify(other);
+    } catch {
+      return object.compare.isEqual(item, other);
+    }
   });
 };
 
